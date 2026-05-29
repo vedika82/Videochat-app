@@ -19,12 +19,12 @@
     <!-- Font Awesome icons library -->
     <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
-
+<!-- 
     <script>
         // EJS variable
         // roomId comes from backend and is stored in ROOM_ID
         const ROOM_ID = "<%= roomId %>";
-    </script>
+    </script> -->
 
     
 </head>
@@ -73,28 +73,18 @@
             <!-- for using camera use this --> 
           </div>
 
-          <!-- Mute microphone button -->
-          <div id="muteButton" class="options_button">
-
-            <!-- Microphone icon -->
-            <i class="fa fa-microphone"></i>
+                    <div id="muteButton" class="options_button"><!-- Mute microphone button -->
+              <i class="fa fa-microphone"></i> <!-- Microphone icon -->
           </div>
-
-          <!-- Disconnect call button -->
-          <div id="disconnect" class="options_button background_red">
-
+             <div id="disconnect" class="options_button background_red"><!-- Disconnect call button -->
             <!-- Phone icon -->
             <i class="fa fa-phone"></i>
           </div>
 
         <!-- Right-side options -->
         <div class="options_right">
-
-          <!-- Invite user button -->
           <div id="inviteButton" class="options_button">
-
-            <!-- Add user icon -->
-            <i class="fas fa-user-plus"></i>
+              <i class="fas fa-user-plus"></i>  <!-- Add user icon -->
           </div> 
       </div>
       </div>
@@ -102,25 +92,16 @@
 
   <!-- Right section for chat -->
   <div class="main_right">
-
     <!-- Chat window -->
     <div class="main_chat_window">
-
-      <!-- Messages container -->
       <div class="messages">
-
       </div>
     </div>
 
     <!-- Message input section -->
     <div class="main_message_container">
-
-      <!-- Input field for typing messages -->
-      <input type="text" autocomplete="off" id="chat_message" placeholder="type message here...">
-
-      <!-- Send button -->
-      <div id="send" class="option_button"> 
-
+      <input type="text" autocomplete="off" id="chat_message" placeholder="type message here..."><!-- Input field for typing messages -->
+      <div id="send" class="option_button"> <!-- Send button -->
         <!-- Plus icon -->
         <i class="fa fa-plus" aria-hidden="true"></i> 
       </div>
