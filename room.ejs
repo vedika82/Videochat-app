@@ -6,7 +6,7 @@
     <title>videochat app</title>
         <link rel="stylesheet" href="style.css" />
             <script src="/socket.io/socket.io.js"></script>
-
+            <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
     <script>
         const ROOM_ID = "<%= roomId %>";
     </script>
@@ -26,8 +26,42 @@
     <div class="main_left">
       <div class="videos_group">
         <div id="video-grid">
-
+          
         </div>
       </div>
+      <div class="options">
+      <div class="option_left">
+          <div id="stopVideo" class="options_button">
+            <i class="fa fa-video-camera"></i>
+<!-- for using camera use this --> 
+          </div>
+          <div id="muteButton" class="options_button">
+            <i class="fa fa-microphone"></i>
+          </div>
+          <div id="disconnect" class="options_button background_red">
+            <i class="fa fa-phone"></i>
+          </div>
+        <div class="options_right">
+          <div id="inviteButton" class="options_button">
+            <i class="fas fa-user-plus"></i>
+          </div> 
+      </div>
+      </div>
+
+
+  <div class="main_right">
+    <div class="main_chat_window">
+      <div class="messages">
+
+      </div>
+    </div>
+    <div class="main_message_container">
+      <input type="text" autocomplete="off" id="chat_message" placeholder="type message here...">
+      <div id="send" class="option_button"> 
+        <i class="fa fa-plus" aria-hidden="true"></i> 
+      </div>
+    </div>
+  </div>
 </body>
+<script src="script.js"></script>
 </html>
