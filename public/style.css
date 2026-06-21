@@ -65,7 +65,7 @@ video {
   background-color: var(--main-darklg);
 }
 
-.options_left {
+.option_left {
   display: flex;
 }
 
@@ -175,6 +175,7 @@ video {
   .main_right {
     display: none;
   }
+
   .main_left {
     width: 100%;
     flex: 1;

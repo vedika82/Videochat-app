@@ -11,90 +11,98 @@
     <title>videochat app</title>
 
     <!-- Links external CSS file -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="public/style.css" />
 
     <!-- Socket.IO library for real-time communication -->
     <script src="/socket.io/socket.io.js"></script>
 
     <!-- Font Awesome icons library -->
-     <script src="https://kit.fontawesome.com/d500d0d55a.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/d500d0d55a.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
-    
+
+    <script>
+        const ROOM_ID = "<%= roomId %>";
+    </script>
 </head>
 <body>
 
-     <!-- Header section -->
-     <div class="header">
+    <!-- Header section -->
+    <div class="header">
 
-      <!-- Logo section -->
-      <div class="logo">
-        <h3>Video Chat</h2>
-      </div>
-    </div>  
-
-      <!-- Main content area -->
-  <div class="main">  
-    <!-- Left section for videos -->
-     <div class="main_left">
-
-      <!-- Group of videos -->
-          <div class="videos_group">
-
-        <!-- Video grid where video streams will be added dynamically -->
-            <div id="video-grid">
-          
+        <!-- Logo section -->
+        <div class="logo">
+            <h3>Video Chat</h3>
         </div>
-      </div>
-
-      <!-- Buttons section -->
-      <div class="options">
-
-      <!-- Left side buttons -->
-            <div class="option_left">
-
-          <!-- Stop video button -->
-                 <div id="stopVideo" class="options_button">
-
-                      <i class="fa fa-video-camera"></i><!-- Camera icon -->
-          </div>
-
-                <div id="muteButton" class="options_button"><!-- Mute microphone button -->
-                    <i class="fa fa-microphone"></i> <!-- Microphone icon -->
-          </div>
-             
-
-        <!-- Right-side options -->
-        <div class="options_right">
-          <div id="inviteButton" class="options_button">
-              <i class="fas fa-user-plus"></i>  <!-- Add user icon -->
-          </div> 
-        </div>
-       </div>
-      </div>
-
-
-  <!-- Right section for chat -->
-  <div class="main_right">
-    <!-- Chat window -->
-    <div class="main_chat_window">
-      <div class="messages">
-      </div>
     </div>
 
-    <!-- Message input section -->
-    <div class="main_message_container">
-      <input type="text" autocomplete="off" id="chat_message" placeholder="type message here..."><!-- Input field for typing messages -->
-      <div id="send" class="option_button"> <!-- Send button -->
-        <i class="fa fa-plus" aria-hidden="true"></i> 
-      </div>
+    <!-- Main content area -->
+    <div class="main">
+
+        <!-- Left section for videos -->
+        <div class="main_left">
+
+            <!-- Group of videos -->
+            <div class="videos_group">
+
+                <!-- Video grid where video streams will be added dynamically -->
+                <div id="video-grid">
+
+                </div>
+            </div>
+
+            <!-- Buttons section -->
+            <div class="options">
+
+                <!-- Left side buttons -->
+                <div class="option_left">
+
+                    <!-- Stop video button -->
+                    <div id="stopVideo" class="options_button">
+                        <i class="fa fa-video-camera"></i><!-- Camera icon -->
+                    </div>
+
+                    <div id="muteButton" class="options_button">
+                        <!-- Mute microphone button -->
+                        <i class="fa fa-microphone"></i>
+                    </div>
+
+                </div> <!-- MISSING CLOSING DIV ADDED -->
+
+                <!-- Right-side options -->
+                <div class="options_right">
+                    <div id="inviteButton" class="options_button">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Right section for chat -->
+        <div class="main_right">
+
+            <!-- Chat window -->
+            <div class="main_chat_window">
+                <div class="messages">
+                </div>
+            </div>
+
+            <!-- Message input section -->
+            <div class="main_message_container">
+                <input type="text" autocomplete="off" id="chat_message"
+                    placeholder="type message here...">
+
+                <div id="send" class="options_button">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </div>
-  </div>
 
 </body>
 
 <!-- External JavaScript file -->
-<!-- Contains main logic for video chat -->
 <script src="script.js"></script>
 
 </html>
