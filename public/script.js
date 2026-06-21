@@ -7,10 +7,11 @@ const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
 
+const user = prompt("Enter your name:");
 // Connect to PeerJS for video and audio calls.
 var peer = new Peer(undefined, {
   path: "/peerjs",
-  host: "/",
+  host: "127.0.0.1",
   port: "3030",
 });
 
@@ -67,3 +68,17 @@ const addVideoStream = (video, stream) => {
     videoGrid.append(video);
   });
 };
+
+// const inviteButton = document.querySelector("#inviteButton");
+// const muteButton = document.querySelector("#muteButton");
+// const stopVideo = document.querySelector("#stopVideo");
+
+// muteButton.addEventListener("click", () => {
+//   const enabled = myVideoStream.getAudioTracks()[0].enabled;
+//   if (enabled) {
+//     myVideoStream.getAudioTracks()[0].enabled = false;
+//     muteButton.innerHTML = "Unmute";
+//   } else {
+//     myVideoStream.getAudioTracks()[0].enabled = true;
+//     muteButton.innerHTML = "Mute";
+//   }
