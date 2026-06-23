@@ -3,6 +3,7 @@ const socket = io("/");
 
 // Prepare the current user's video.
 let myVideoStream;
+const peers = {};
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
@@ -11,8 +12,8 @@ const user = prompt("Enter your name:");
 // Connect to PeerJS for video and audio calls.
 var peer = new Peer(undefined, {
   path: "/peerjs",
-  host: "127.0.0.1",
-  port: "3030",
+  host: window.location.hostname,
+  port: window.location.port || 3030,
 });
 
 // Ask the browser for permission to use the camera and microphone.
@@ -37,15 +38,24 @@ navigator.mediaDevices.getUserMedia({
   socket.on("user-connected", (userId) => {
     connectToNewUser(userId, stream);
   });
+}).catch((error) => {
+  console.error("Unable to access the camera or microphone:", error);
+  alert("Camera and microphone access is required for the video call.");
 });
 
 // Send the current user's stream and receive the other user's stream.
 const connectToNewUser = (userId, stream) => {
   const call = peer.call(userId, stream);
   const video = document.createElement("video");
+  peers[userId] = call;
 
   call.on("stream", (userVideoStream) => {
     addVideoStream(video, userVideoStream);
+  });
+
+  call.on("close", () => {
+    video.remove();
+    delete peers[userId];
   });
 };
 
@@ -75,34 +85,34 @@ const stopVideo = document.querySelector("#stopVideo");
 const disconnectBtn = document.querySelector("#disconnect");
 
 muteButton.addEventListener("click",() => {
+  if (!myVideoStream || myVideoStream.getAudioTracks().length === 0) return;
+
   const enabled = myVideoStream.getAudioTracks()[0].enabled;
   if(enabled){
     myVideoStream.getAudioTracks()[0].enabled = false;
-    html = `<i class="fas fa-microphone-slash"></i>`;
     muteButton.classList.toggle("background_red");
-    muteButton.innerHTML = html;
+    muteButton.innerHTML = `<i class="fas fa-microphone-slash"></i>`;
   }
   else{
     myVideoStream.getAudioTracks()[0].enabled = true;
-    html = `<i class="fas fa-microphone"></i>`;
     muteButton.classList.toggle("background_red");
-    muteButton.innerHTML = html;
+    muteButton.innerHTML = `<i class="fas fa-microphone"></i>`;
   }
 })
 
 stopVideo.addEventListener("click",() => {
+  if (!myVideoStream || myVideoStream.getVideoTracks().length === 0) return;
+
   const enabled = myVideoStream.getVideoTracks()[0].enabled;
   if(enabled){
     myVideoStream.getVideoTracks()[0].enabled = false;
-    html = `<i class="fas fa-video-slash"></i>`;
     stopVideo.classList.toggle("background_red");
-    stopVideo.innerHTML = html;
+    stopVideo.innerHTML = `<i class="fas fa-video-slash"></i>`;
   }
   else{
     myVideoStream.getVideoTracks()[0].enabled = true;
-    html = `<i class="fas fa-video"></i>`;
     stopVideo.classList.toggle("background_red");
-    stopVideo.innerHTML = html;
+    stopVideo.innerHTML = `<i class="fas fa-video"></i>`;
   }
 })
 
@@ -118,6 +128,6 @@ disconnectBtn.addEventListener("click",() => {
   if(myVideoElement){
     myVideoElement.remove();
   }
-  socket.emit("disconnect");
+  socket.disconnect();
   window.location.href = "https://www.google.com";
 })
