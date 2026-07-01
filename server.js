@@ -32,10 +32,11 @@ app.get("/:room", (req, res) => {
 
 // Handle users joining and leaving a room.
 io.on("connection", (socket) => {
-  socket.on("join-room", (roomId, userId) => {
+  // Receive the user's display name so other clients can show it under their video.
+  socket.on("join-room", (roomId, userId, userName) => {
     socket.join(roomId);
     setTimeout(() => {
-      socket.to(roomId).broadcast.emit("user-connected", userId);
+      socket.broadcast.to(roomId).emit("user-connected", userId, userName);
     }, 1000);
 
     socket.on("disconnect", () => {

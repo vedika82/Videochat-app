@@ -51,12 +51,32 @@
 video {
   height: 300px;
   border-radius: 1rem;
-  margin: 0.5rem;
   width: 400px;
   object-fit: cover;
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
+}
+
+.video_tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+/* Style the display name shown under each video. */
+.video_name {
+  color: var(--main-light);
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: 0.4rem;
+  max-width: 400px;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .options {
@@ -183,6 +203,10 @@ video {
 
   video {
     height: auto;
+    width: 100%;
+  }
+
+  .video_tile {
     width: 100%;
   }
 
